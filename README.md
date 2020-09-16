@@ -1,2 +1,2 @@
-# hermes
-Communicate API written in GO lang
+# Hermes
+Communication API written in GO lang
