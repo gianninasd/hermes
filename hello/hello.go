@@ -1,6 +1,7 @@
 package main
 
 import (
+	"dg/utils"
 	"fmt"
 	"log"
 	"os"
@@ -22,5 +23,6 @@ func main() {
 
 	david := User{name: "David James", adminInt: true}
 
-	log.Println("user is", david)
+	log.Println("user is", utils.StringEcho("bla"))
+	log.Println("user is", utils.ToStringStruct(david))
 }
