@@ -9,5 +9,5 @@ func StringEcho(s string) string {
 
 // ToStringStruct test function
 func ToStringStruct(s interface{}) string {
-	return fmt.Sprintf("%#v", s) //"echo2::" + s
+	return fmt.Sprintf("%#v", s)
 }

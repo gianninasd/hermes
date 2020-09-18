@@ -2,16 +2,19 @@ package main
 
 import (
 	"dg/utils"
-	"fmt"
 	"log"
 	"os"
 )
+
+func init() {
+	log.Println("in init")
+}
 
 // main function, where it all starts
 func main() {
 	//var s = "bla"
 	var b = os.Getenv("PROCESSOR_IDENTIFIER")
-	fmt.Println("GO test>> ", b, "PID=", os.Getpid(), "xx")
+	log.Println("GO test>> ", b, "PID=", os.Getpid(), "xx")
 
 	log.Println("blue and red")
 
@@ -25,4 +28,5 @@ func main() {
 
 	log.Println("user is", utils.StringEcho("bla"))
 	log.Println("user is", utils.ToStringStruct(david))
+	log.Println("user is", david)
 }
