@@ -1,6 +1,9 @@
 # Hermes
 Communication API written in GO lang
 
+## Pre-requisites
+`go get github.com/google/uuid`
+
 ## References
 * https://golang.org/
 * https://tutorialedge.net/golang/creating-restful-api-with-golang/
