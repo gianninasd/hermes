@@ -61,7 +61,7 @@ func main() {
 	}
 	req, err := http.NewRequest("POST", "https://api.test.paysafe.com/cardpayments/v1/accounts/1001289630/auths", bytes.NewBuffer(body))
 	req.Header.Add("Content-Type", "application/json")
-	req.Header.Add("Authorization", "Basic dGVzdF9hc3NsMTpCLXFhMi0wLTViZTg4MzJjLTAtMzAyYzAyMTQ2Y2Q4ZDUyZGRjY2E4ZWU4Y2U1Nzg0NTUwNWNlODBjZmNhYjIzYzYyMDIxNDBmYjAzMDBiMGJmOWE4Y2M2M2ZjMGI3ZDU4ZTJjMGMxYjY3MjQxMzA=")
+	req.Header.Add("Authorization", "Basic xx")
 
 	if err != nil {
 		log.Fatalln(err)
