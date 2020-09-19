@@ -7,13 +7,18 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"runtime"
 	"time"
 
 	guuid "github.com/google/uuid"
+	"github.com/magiconair/properties"
 )
 
 func main() {
-	log.Println("HTTP test client |", "PID=", os.Getpid())
+	log.Println("HTTP test client |", "PID=", os.Getpid(), "VER=", runtime.Version(), "OS=", runtime.GOOS)
+
+	// load config from the property file
+	p := properties.MustLoadFile("config.properties", properties.UTF8)
 
 	type BillingDetails struct {
 		Zip string `json:"zip"`
@@ -59,9 +64,9 @@ func main() {
 	client := http.Client{
 		Timeout: timeout,
 	}
-	req, err := http.NewRequest("POST", "https://api.test.paysafe.com/cardpayments/v1/accounts/1001289630/auths", bytes.NewBuffer(body))
+	req, err := http.NewRequest("POST", p.MustGetString("url"), bytes.NewBuffer(body))
 	req.Header.Add("Content-Type", "application/json")
-	req.Header.Add("Authorization", "Basic xx")
+	req.Header.Add("Authorization", "Basic "+p.MustGetString("apikey"))
 
 	if err != nil {
 		log.Fatalln(err)

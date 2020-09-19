@@ -3,6 +3,7 @@ Communication API written in GO lang
 
 ## Pre-requisites
 `go get github.com/google/uuid`
+`go get -u github.com/magiconair/properties`
 
 ## References
 * https://golang.org/
