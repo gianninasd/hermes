@@ -5,17 +5,16 @@ import (
 	"log"
 	"os"
 	"runtime"
-	"sync"
 	"time"
 
 	guuid "github.com/google/uuid"
 	"github.com/magiconair/properties"
 )
 
-var wg sync.WaitGroup
+//var wg sync.WaitGroup
 
 func processRequest(p *properties.Properties, cardRequest client.CardRequest, resp chan string) {
-	defer wg.Done()
+	//defer wg.Done()
 	resp2 := client.SendPurchase(p, cardRequest)
 	resp <- resp2 // send response to the channel
 	//wg.Done()
@@ -25,7 +24,7 @@ func processRequest(p *properties.Properties, cardRequest client.CardRequest, re
 func main() {
 	log.Println("Go", runtime.Version(), "File Processor running on", runtime.GOOS, "- Process ID", os.Getpid())
 	log.Println("Number of CPUs:", runtime.NumCPU())
-	//runtime.GOMAXPROCS(5)
+	//runtime.GOMAXPROCS(2)
 
 	// load config from the property file
 	p := properties.MustLoadFile("config.properties", properties.UTF8)
@@ -50,7 +49,7 @@ func main() {
 	startTime := time.Now()
 
 	for i := 0; i < totalRecords; i++ {
-		wg.Add(1)
+		//wg.Add(1)
 		cardRequest.MerchantRefNum = guuid.New().String()
 		cardRequest.Amount = records[i]
 
@@ -58,11 +57,16 @@ func main() {
 
 		go processRequest(p, cardRequest, resp)
 
-		r := <-resp // get response from channel
-		log.Println(r)
+		//r := <-resp // get response from channel
+		//log.Println(r)
 	}
 
-	wg.Wait()
+	//wg.Wait()
+
+	// loop and print all responses
+	for j := 0; j < totalRecords; j++ {
+		log.Println(<-resp)
+	}
 
 	endTime := time.Now()
 	log.Println("Done processing", totalRecords, "records in", endTime.Sub(startTime))
