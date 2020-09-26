@@ -19,3 +19,4 @@ You will see processing output on your console
 * https://medium.com/@kevalpatel2106/why-should-you-learn-go-f607681fad65
 * https://www.golangprograms.com/goroutines.html
 * https://medium.com/@masnun/making-http-requests-in-golang-dd123379efe7
+* https://medium.com/dev-bits/making-concurrent-http-requests-in-go-programming-language-823b51bb1dc2
